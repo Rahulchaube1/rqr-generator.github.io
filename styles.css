@@ -1,0 +1,258 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* Set the background image */
+    background: url('https://media1.giphy.com/media/lNG8ZbSxsj9QcNikGJ/200w.webp?cid=ecf05e47j99yy5izlwx7a1vnj28ruir49368d3jvms1o3wc5&ep=v1_gifs_related&rid=200w.webp&ct=g') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Make sure the body takes up the full height of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Container for QR Code Generator */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Space between the form and QR code */
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    width: 600px; /* Fixed width for container */
+    max-width: 100%;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Header and Paragraph Styling */
+h1 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-container {
+    max-width: 300px;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, select, button {
+    width: 85%;
+    padding: 12px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #333;
+    color: #fff;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Styling for Color Picker and Select Input */
+input[type="color"], select {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+/* Focus Styles */
+input:focus, select:focus {
+    box-shadow: 0 0 10px 2px #00f5d4;
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(45deg, #ff007f, #00f5d4);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #00f5d4, #ff007f);
+    transform: scale(1.05);
+}
+
+/* QR Code Display Area */
+.qr-code-container {
+    display: none;
+    transition: opacity 0.5s ease;
+}
+
+.qr-box {
+    width: 220px;
+    height: 220px;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.qr-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+}
+
+.qr-img:hover {
+    transform: scale(1.1);
+}
+
+/* Download Button */
+#download-btn {
+    background: #ff007f;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#download-btn:hover {
+    background: #7f00ff;
+    transform: scale(1.1);
+}
+
+/* Footer Styling */
+footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    color: #ddd;
+}
+
+footer a {
+    color: #00f5d4;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animation for Image Moving Across Screen */
+@keyframes slideImage {
+    0% {
+        transform: translateX(100%); /* Start from the right side */
+    }
+    100% {
+        transform: translateX(-100%); /* End at the left side */
+    }
+}
+
+/* Image Styling for GIF */
+#moving-image {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    width: 100px; /* Adjust width to fit your preference */
+    height: auto;
+    animation: slideImage 15s linear infinite;
+}
+
+/* Logo Animation in Top Right Corner */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+figure {
+    --size: 15vmin;
+    --duration: 4s;
+    --direction: 1;
+    --pull: -1.25;
+    perspective: 30rem;
+    display: grid;
+    grid-template-areas: "figure";
+    place-items: center;
+    inline-size: var(--size);
+    aspect-ratio: 1;
+    animation: spin var(--duration) ease-in-out infinite;
+}
+
+figure > * {
+    --radius: calc(var(--size) / 2);
+    --deg: calc(var(--i) * (360deg / 12));
+    --hs: 225 100%;
+    --transform-start: translate3d(
+        calc(cos(var(--deg)) * var(--radius)),
+        calc(sin(var(--deg)) * var(--radius)),
+        0
+    )
+    rotate(calc(var(--deg)));
+    grid-area: figure;
+    background-color: hsl(var(--hs) var(--l, 60%));
+    inline-size: calc(var(--size) / 4);
+    aspect-ratio: 1;
+    clip-path: polygon(25% 25%, 100% 50%, 25% 75%, 0% 50%);
+    transform: var(--transform-start);
+    transform-style: preserve-3d;
+    animation: diamonds var(--duration) cubic-bezier(0.87, 0, 0.13, 1) infinite;
+}
+
+@keyframes spin {
+    0%, 25% {
+        transform: scaleX(var(--direction)) rotate(0);
+    }
+    75%, 100% {
+        transform: scaleX(var(--direction)) rotate(1turn);
+    }
+}
+
+@keyframes diamonds {
+    0%, 20% {
+        transform: var(--transform-start);
+    }
+    50% {
+        clip-path: polygon(75% 25%, 100% 50%, 75% 75%, 0% 50%);
+        transform: translate3d(
+            calc(cos(var(--deg)) * var(--radius) * var(--pull)),
+            calc(sin(var(--deg)) * var(--radius) * var(--pull)),
+            5rem
+        )
+        rotate(calc(var(--deg) + 90deg));
+    }
+}

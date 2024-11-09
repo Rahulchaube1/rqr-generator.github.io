@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RQR Code Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>RQR Generator</h1>
+            <p>Create colorful and customizable QR codes!</p>
+            <form id="qr-form" onsubmit="handleSubmit(event)">
+                <input type="text" id="inptxt" placeholder="Enter text or URL" autocomplete="off" required>
+                <input type="number" id="qrsize" placeholder="Size (e.g., 200)" value="200" required min="100">
+                <label for="foregroundColor">Foreground Color</label>
+                <input type="color" id="foregroundColor" value="#000000">
+                <label for="backgroundColor">Background Color</label>
+                <input type="color" id="backgroundColor" value="#ffffff">
+                <label for="errorCorrection">Error Correction</label>
+                <select id="errorCorrection">
+                    <option value="L">L (Low)</option>
+                    <option value="M">M (Medium)</option>
+                    <option value="Q">Q (Quartile)</option>
+                    <option value="H">H (High)</option>
+                </select>
+                <button type="submit">Generate QR Code</button>
+            </form>
+        </div>
+
+        <div class="qr-code-container">
+            <div class="qr-box">
+                <img id="qrimg" class="qr-img" src="" alt="QR Code">
+            </div>
+            <button id="download-btn" onclick="downloadQR()" style="display:none;">Download QR Code</button>
+        </div>
+    </div>
+
+    <!-- The moving image at the bottom -->
+    <img id="moving-image" src="https://cdn.pixabay.com/animation/2022/10/17/00/48/00-48-56-670_512.gif" alt="Moving Image">
+
+    <footer>
+        <p>Made by RAHUL CHAUBE <a href="" target="_blank"></a></p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
